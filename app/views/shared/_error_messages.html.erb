@@ -1,0 +1,11 @@
+<% if @user.errors.any? %>
+		<div class="error messages">
+			<ul>
+                <div id="error_explanation">  
+				<% for message in @user.errors.full_messages %>
+                    <li><%= message %></li>
+				<% end %>
+                </div>
+			</ul>
+		</div>
+<% end %>	

@@ -4,7 +4,7 @@ class UserTest < ActiveSupport::TestCase
 
 	def setup
 		@user = User.new(name: "ExampleUser", email: "user@example.com", 
-			password: "foobar", password_confirmation: "foobar")
+			password: "foobar", password_confirmation: "foobar", role: "user")
 	end
 
 	test "should be valid" do 
@@ -66,4 +66,16 @@ class UserTest < ActiveSupport::TestCase
 	   assert_not @user.valid?
 	 end
 
+	 test "user without a role shoudl be invalid" do
+	   @user.role = "     "
+	   assert_not @user.valid?
+	end
+
+	test "user validation should accept valid roles" do
+		valid_roles = %w[ admin user owner ]
+		valid_roles.each do |valid_role|
+			@user.role = valid_role
+			assert @user.valid?, "#{valid_role.inspect} should be valid"
+		end
+	end
 end
