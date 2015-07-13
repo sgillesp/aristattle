@@ -1,0 +1,8 @@
+<% if @user = current_user %>
+<p>
+<ul>Name: <%= current_user.name %></ul>
+<ul>Email: <%= current_user.email %></ul>
+</p>
+<% else %>
+    <p>Please log in.</p>
+<% end %>
